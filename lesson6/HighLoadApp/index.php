@@ -1,9 +1,13 @@
 <?php
 
-$m = new Memcached ();
-$m->addServer('localhost', 11211);
-$server = $m->get('server');
-$m->set('server', 'server 1');
+session_start();
+
+$server = $_SESSION['server'];
 
 echo 'Это сервер 1' . PHP_EOL;
-echo 'До это вы были на ' . $server;
+
+if (isset($server)) {
+    echo 'До это вы были на ' . $server;
+}
+
+$_SESSION['server'] = 'server 1';

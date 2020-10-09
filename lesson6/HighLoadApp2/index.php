@@ -1,12 +1,13 @@
 <?php
 
-$m = new Memcached();
-$m->addServer('192.168.0.14', 11211);
+session_start();
+
+$server = $_SESSION['server'];
 
 echo 'Это сервер 2' . PHP_EOL;
 
-if ($server = $m->get('server')) {
+if (isset($server)) {
     echo 'До это вы были на ' . $server;
 }
 
-$m->set('server', 'server 2');
+$_SESSION['server'] = 'server 2';
